@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<title>container</title>
+		<style type="text/css">
+			.tab-content{border:1px solid #ddd;border-top:none;padding:50px;border-radius:0 5px 5px 5px; list-style: none;}
+		</style>
+	</head>
+	<body>
+		<br /><br />
+		<div class="container">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#a" data-toggle="tab">one</a></li>
+				<li><a href="#b" data-toggle="tab">two</a></li>
+				<li class="dropdown">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">three <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#d" data-toggle="tab">111</a></li>
+						<li><a href="#e" data-toggle="tab">222</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="tab-content">
+				<li id="a" class="tab-pane active">1</li>
+				<li id="b" class="tab-pane">2</li>
+				<li id="c" class="tab-pane">3</li>
+				<li id="d" class="tab-pane">4</li>
+				<li id="e" class="tab-pane">5</li>
+			</ul>
+			<br /><br />
+			
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#1" data-toggle="tab">one</a></li>
+				<li><a href="#2" data-toggle="tab">two</a></li>
+				<li class="dropdown">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">three <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#4" data-toggle="tab">ceshi4</a></li>
+						<li><a href="#5" data-toggle="tab">ceshi5</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul class="tab-content">
+				<li id="1" class="tab-pane active"><a href="">1111</a></li>
+				<li id="2" class="tab-pane"><a href="">2222</a></li>
+				<li id="3" class="tab-pane"><a href="">3333</a></li>
+				<li id="4" class="tab-pane"><a href="">4444</a></li>
+				<li id="5" class="tab-pane"><a href="">5555</a></li>
+			</ul>
+			
+			
+		</div>
+	</body>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//配置：
+		//方法：
+		//自定义事件：
+		if(window.navigator.userAgent.toLowerCase().indexOf('mobile') == -!){ //pc
+			$("#myTabs a").on("mouseover",function(){
+				$(this).tab('show')
+			});
+		};
+	</script>
+</html>

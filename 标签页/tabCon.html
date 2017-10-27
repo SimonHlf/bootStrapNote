@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<title>container</title>
+		<style type="text/css">
+			.tab-content{border:1px solid #ddd;border-top:none;padding:50px;border-radius:0 5px 5px 5px;}
+		</style>
+	</head>
+	<body>
+		<br /><br />
+		<div class="container">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#a" data-toggle="tab">one</a></li>
+				<li><a href="#b" data-toggle="tab">two</a></li>
+				<li><a href="#c" data-toggle="tab">three</a></li>
+			</ul>
+			<!-- 内容 -->
+			<ul class="tab-content">
+				<li id="a" class="tab-pane active">aaaa</li>
+				<li id="b" class="tab-pane">bbbbb</li>
+				<li id="c" class="tab-pane">cccc</li>
+			</ul>
+			<br /><br />
+			<div style="width: 400px;">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#a1" data-toggle="tab">one</a></li>
+					<li><a href="#b1" data-toggle="tab">two</a></li>
+					<li><a href="#c1" data-toggle="tab">three</a></li>
+				</ul>
+				<!-- 内容 -->
+				<ul class="tab-content">
+					<li id="a1" class="tab-pane fade in active">aaaa</li>
+					<li id="b1" class="tab-pane">bbbbb</li>
+					<li id="c1" class="tab-pane">cccc</li>
+				</ul>
+			</div>
+			<br /><br />
+			<div style="width: 400px;">
+				<ul id="myTabs" class="nav nav-tabs">
+					<li class="active"><a href="#a2" data-toggle="tab">one</a></li>
+					<li><a href="#b2" data-toggle="tab">two</a></li>
+					<li><a href="#c2" data-toggle="tab">three</a></li>
+				</ul>
+				<!-- 内容 -->
+				<ul class="tab-content">
+					<li id="a2" class="tab-pane active">aaaa</li>
+					<li id="b2" class="tab-pane">bbbbb</li>
+					<li id="c2" class="tab-pane">cccc</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//配置：
+		//方法：
+		//自定义事件：
+		if(window.navigator.userAgent.toLowerCase().indexOf('mobile') == -!){ //pc
+			$("#myTabs a").on("mouseover",function(){
+				$(this).tab('show')
+			});
+		};
+	</script>
+</html>

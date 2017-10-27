@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<title>container</title>
+		<style type="text/css">
+			.my-btnStyle .btn{
+				width: 85px;
+				height:50px;
+				border:none;
+				background:#f6f8f8;
+			}
+			.my-btnStyle .dropdown-menu{
+				animation: 500ms linear fadeIn;
+			}
+			@keyframes fadeIn{
+				0%{opacity:0;transform: translateY(-20px);}
+				100%{opacity:1;transform: translateY(0px);}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="dropdown my-btnStyle">
+						<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">Plugins
+							<span class="caret"></span></button>
+						<ul class="dropdown-menu">
+							<li>1</li>
+							<li>2</li>
+							<li>3</li>
+							<li>4</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4">
+				</div>
+				<div class="col-lg-4">
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		//这种写法不会影响到其他的下拉菜单 插件写法
+		$('.dropdown-toggle').dropdown();
+		//配置 {}
+		//方法 ""
+		//自定义事件 on
+		//显示前
+		/*$('.dropdown').on('show.bs.dropdown',function(){
+			alert("1");
+		});*/
+		//显示后
+		$('.dropdown').on('shown.bs.dropdown',function(){
+			alert("2");
+		});
+	</script>

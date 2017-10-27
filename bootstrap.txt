@@ -1,0 +1,356 @@
+一：
+	栅格系统：把整个页面分成12列网格，根据不同网格的整合组成不同的布局方案 对自适应和响应式有很大帮助
+
+	容器：通过class来体现出来 .container-fluid .container
+
+	container-fluid->流体 流体的容器会有padding值 左右各15px
+	
+	container->固定 左右各有15px的padding
+		1170
+		970
+		750
+		auto
+		
+	阈值的设定：
+		1200>=
+		992>=
+		768>=
+		768<
+
+注：尽量避免容器嵌套容器，因为不管是流体布局还是固定布局左右都各有15px的padding值。所以，不适合嵌套。做项目的时候要把容器给单独一份
+当需要指定一个容器的固定宽度的时候
+div{width:1000px !important}->不管分辨率是多少，该div的宽度一直是1000px;
+
+容器中一行用class row  列用class col
+<div class="row">
+	<div class="col-lg-1"></div>
+	<div class="col-lg-11"></div>
+</div>
+
+<div class="row">
+	<div class="col-lg-3">col-lg-3</div>
+	<div class="col-lg-4">col-lg-4</div>
+	<div class="col-lg-5">col-lg-5</div>
+</div>
+<div class="row">
+	<div class="col-lg-6">col-lg-6</div>
+	<div class="col-lg-6">col-lg-6</div>
+</div>
+->当一行里面的列数大于12的时候，多余的会掉下来
+和阈值有关：
+col-lg->大屏幕large >=1200
+col-md->中屏->992<=md<1200
+col-sm->小屏768<=sm<992
+col-xs->超小屏 移动端xs<768
+
+组合模式：class="col-lg-3 col-md-4 col-sm-6"
+
+其他：
+	列偏移：col-[*]-offset-*  col-lg-offset-4 向右控制偏移的4哥网格的距离 最大值是12最小1，当小于lg对应阈值时会变成一列
+	当没有设置md所占网格大小的时候，这时候就会通过偏移量自动设置md所占网格的大小 12-偏移量
+	列排序：颠倒位置
+		col-*-push-* ->向右推
+		col-*-pull-*->向左拉
+		
+	偏移和排序区别:
+		01：
+		offset:只能往右偏，不能往左
+		排序：
+			push->向前
+			pull->向后
+		02：
+		偏移：当有多个元素的情况下，当一行排不下的时候，它会在下一行偏移
+	
+	嵌套：嵌套的这一行会按照它的父级的宽度为基准进行12个网格的重新分配
+	浮动：列的高度不一样->一列的内容高度比较高，其余列的高度并没有被撑开到和内容多的那列的高度，然后此时如果再添加一列的话它会出现在高度没有被撑开的那列下面，其实初衷是想新的那一列放在内容多的那一列下面，需要清浮动
+	清浮动：<div class="clearfix"></div>
+	
+
+二：bootstrap下的响应式工具：
+	概念：针对不同设备展示或隐藏页面内容
+	01：可见类：
+		visible-*-* visible-lg/md/sm/xs-block/inline-block/inline
+		visible-lg-block->当前元素在lg以上的分辨率才会显示出来，其他分辨率下该元素都是隐藏的
+		hidden-* hidden-lg/md/sm/xs
+		
+	02：打印类:
+		visible-print-block/inline-block/inline
+		visible-print-block:只有在打印的时候才显示出来，当前网页浏览时是显示不出来的
+		hidden-print->只有在打印的时候是隐藏的，浏览页面的时候是显示的
+
+
+
+三：Glyphicons字体图标
+		好处：
+			减少请求
+			容易控制样式：颜色 大小
+			
+		使用字体图标是需要使用一些文件的，就是fonts文件夹
+		<div class="glyphicon glyphicon-search" style="font-size: 50px; color: #f90;"></div>
+		细节：
+			01：尽量不要把文字写在字体图标的内部！尽量让这个图标单独的成为一个整体
+			02：利用font-face 字体下默认的路径是这样的一个文件夹的关系。如果要修改的路径的话，也需要修改font-face下的路径
+
+
+
+四：预定义样式风格
+	01:
+	btn按钮样式：
+	input->button:
+		primary(首选项)
+		success
+		info->一般信息
+		warning->警告
+		danger
+
+	用法：增加样式类class="btn btn-primary";
+	02:背景颜色：
+	p标签 bg-primary,不止是段落，其他任何元素只要是描述或者定义和背景相关的都可以用bg-primary/success/info/warning/danger;
+	03:文字颜色：text-primary/success/info/warning/danger;
+	04:警告框：class="alert alert-primary/success/info/warning/danger";
+	05:面板：父级div ->class="panel panel-primary/success/infow/danger/warning";
+		<!-- 面板插件 -->
+		<div class="panel panel-primary">
+			<!-- 头信息 -->
+			<div class="panel panel-heading"><h4>面板头信息</h4></div>
+			<!-- 主体部分 -->
+			<div class="panel panel-body">我是面板的主体内容</div>
+		</div>
+		登陆框
+		<div class="container">
+			<div class="panel panel-primary">
+				<div class="panel panel-heading">Login</div>
+				<div class="panel panel-body">
+					<div class="form-group">
+						<label>用户名：</label><input type="text" class="form-control"/>
+						<div class="alert alert-warning">用户名不能为空</div>
+						<label>密码：</label><input type="password" class="form-control"/>
+					</div>
+					<a href="#" class="text-info">忘记密码？</a>
+					<input type="button" class="btn btn-primary" value="登陆"/>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+五：按钮
+	基础类：
+		btn->如果想要制作按钮的话必须要添加btn类
+		例如：class="btn btn-primary"
+		btn-default->默认的只带边框的样式，没有背景色
+		btn-link->默认成链接的形式
+	大小：
+		btn-lg/btn-sm/btn-xs 没有md 因为默认的大小就是md方式 即btn-md
+		class="btn btn-primary btn-lg"
+		
+		输入框通用：<input type="text" class="form-control input-lg" name="" id="" value="" />input-lg/input-xs/input-sm
+		
+	状态：
+		active
+		disabled
+		
+	种类：
+		常见的给a input button添加btn类
+		
+	块级：
+		btn-block->本身的宽度和父级一样了
+		
+	按钮组：在不同个数按钮的父级增加一个class类btn-group 也有大小可以设置 btn-group-lg/sm/xs
+		btn-group
+		btn-group-justified:端点对齐：就是把父级的容器的宽度除以按钮的个数然后把得到的宽度平均分配给每个按钮来做到自适应
+		注：针对 a input button，如果父级添加btn-group-justified的话，只是a起作用，如果想让input和button也起作用的话需要给每个input或button增加一个父级并增加class类：btn-group
+		<div class="btn-group btn-group-justified">
+			<div class="btn-group">
+				<input type="button" class="btn btn-primary" value="按钮1" />
+			</div>
+			<div class="btn-group">
+				<input type="button" class="btn btn-primary" value="按钮2" />
+			</div>
+			<div class="btn-group">
+				<input type="button" class="btn btn-primary" value="按钮3" />
+			</div>
+			<div class="btn-group">
+				<input type="button" class="btn btn-primary" value="按钮4" />
+			</div>
+		</div>
+		<div class="btn-group btn-group-justified">
+			<div class="btn-group">
+				<button class="btn btn-primary">按钮1</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-primary">按钮2</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-primary">按钮3</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-primary">按钮4</button>
+			</div>
+		</div>		
+		
+		btn-group-vertical：把按钮组从横向->纵向 ，如果使用此类，就不要使用btn-group了，为了放置按钮右上角出现直角
+		<div class="btn-group-vertical">
+			<a href="#" class="btn btn-primary">按钮1</a>
+			<a href="#" class="btn btn-primary">按钮2</a>
+			<a href="#" class="btn btn-primary">按钮3</a>
+			<a href="#" class="btn btn-primary">按钮4</a>
+		</div>
+		
+		
+		
+		
+		
+六：下拉菜单
+		自定义属性：
+			data-* :boot下js触发器的一种写法 data-*来操作js交互的触发器
+			area-*:针对一些特殊人群进行服务
+				aria-haspopup:是否有弹出下拉菜单 true:存在
+				aria-expanded:是否目前是一种展开的状态->初始：false 显示为true 隐藏为false
+			role:描述的当前一种状态
+
+
+		必要的：
+			父级div:添加类dropdown
+			button:触发下来菜单需要添加class:dropdown-toggle  采用js交互增加data-toggle="dropdown"
+			下拉菜单ul:增加class类dropdown-menu  dropdown-menu-right->下拉菜单靠右
+
+		默认情况下是显示的的话给父级dropdown类增加一个class类open
+		
+		如果想改变下拉菜单展开的方向需要修改父级类：
+			向上：div.dropup
+			向下：div.dropdown
+		
+		让下来菜单文字居中：给每个li增加一个class为test-center
+		
+		下拉菜单不单单可以指定给按钮button也可以指定为a或者其他元素
+		
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">dropdown<span class="caret"></span></button>
+			<ul class="dropdown-menu">
+				<li>1</li>
+				<li>1</li>
+				<li>1</li>
+			</ul>
+		</div>
+
+
+
+
+
+七：标签页 选项卡
+
+	头部：默认和父级的宽度是一样的！自适应
+		  固定宽度的话：01：给ul增加一个父级添加一个宽度 02：给ul本身添加一个宽度值
+		nav:基础类
+		nav-tabs:选项卡头部的样式
+		nav-justified:端点对其的展示方式 一旦屏幕分辨率小于768就变成竖装的菜单了->移动端
+		nav-tabs-justified:让底边的边框线和tabs每个宽度对应一样
+		nav-pills：类似于一种药丸的布局方式
+		nav-stacked:竖状的展示方式
+	
+		头部切换是给每个li增加一个交互 ->data-toggle="tab"
+		
+	内容：
+		父级：给当前ul添加一个class类问tab-content
+		内容：给每个li增加一个class类tab-pane
+		内容实现切换：href对应id ->给内容部分每个元素增加一个id，然后头部li每个下面的a的href对应上该id 锚点
+		淡入淡出方式：给内容部分的li增加两个类 fade 和 in
+		鼠标移入方式：
+		
+		
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#a" data-toggle="tab">one</a></li>
+			<li><a href="#b" data-toggle="tab">two</a></li>
+			<li><a href="#c" data-toggle="tab">three</a></li>
+		</ul>
+		<!-- 内容 -->
+		<ul class="tab-content">
+			<li id="a" class="tab-pane active">aaaa</li>
+			<li id="b" class="tab-pane">bbbbb</li>
+			<li id="c" class="tab-pane">cccc</li>
+		</ul>
+
+
+
+八：导航条 ->采用nav标签
+	基类：class:navbar
+		navbar-default
+		菜单：基础类:nav
+			navbar-nav
+			navbar-inverse:反转颜色
+			navbar-static-top:固定到头部一个样式 去除两边的圆角
+			navbar-fixed-top:固定的导航条->顶部
+			navbar-fixed-bottom：固定的导航条->底部
+
+		解决navbar-fixed-top/bottom遮挡下面内容：
+			给body添加一个margin-top
+		
+			navbar-brand:针对logo的一个样式类，如果想添加一个logo的话，需要给当前logo元素增加一个父级
+			<div class="navbar-header">
+				<a href="" class="navbar-brand">Logo</a>
+			</div>
+			
+			navbar-left:向左浮动
+			navbar-right:靠右显示
+			navbar-btn:导航条中存在按钮的话想要其居中，需要添加一个navbar-btn的样式类
+			navbar-link:链接
+			navbar-text:让文字垂直居中显示
+			navbar-form:导航栏中的表单
+			
+		下拉菜单：
+		响应式导航条：
+			01：给button增加class:navbar-togglle
+			02:给导航条增加一个父级类名为collapse navbar-collapse->折叠类
+		滚动监听：
+			data-spy:scroll->可滚动监听的
+			data-target
+			data-offset:距离上面的距离多少开始触发
+
+	常见写法：把容器写入到导航条里面
+	<nav class="navbar navbar-default">
+		<div class="container">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="">one</a></li>
+				<li><a href="">two</a></li>
+				<li><a href="">three</a></li>
+			</ul>
+		</div>
+	</nav>
+
+
+
+
+
+
+
+
+
+bootstrap小知识点：
+01：bootstrap中的左浮动：pull-left
+02：bootstrap中的左浮动：pull-right
+03：如果想去除一个放在容器中浮动元素的左右padding值的话，需要给该元素父级添加一个class为row的类
+04：给一个元素固定定位增加一个class为affix的类。定义方向的话只需在样式中添加left/right的值
+05：给
+06:给按钮增加箭头：
+例如:
+	a元素<a class="btn btn-primary" href="#">带箭头的按钮<span class="caret"></span></a>
+	button元素：<button class="btn btn-primary">增加箭头button<span class="caret"></span></button>
+	input不合适
+	通过组带箭头：a button都可以
+	<div class="btn-group">
+		<a href="#"class="btn btn-primary">增加箭头</a>
+		<a href="#"class="btn btn-primary"><span class="caret"></span></a>
+	</div>
+	如果想变成向上的箭头给一组的父级增加class:dropup
+	<div class="btn-group dropup">
+		<a href="#"class="btn btn-primary">增加箭头</a>
+		<a href="#"class="btn btn-primary"><span class="caret"></span></a>
+	</div>
+	
+07:下拉菜第一部分和第二部分分别给第一个li增加一个类名为dropdown-header的类 然后中间需要分割线分开的话需要增加一个li类名为diveder的class!
